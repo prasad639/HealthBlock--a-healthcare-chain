@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>HealthBlock</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="images/icon.jpg" />
+    <style>
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+        /* Style the button with a contrasting color for white backgrounds */
+        .btn-outline-dark {
+            color: #343a40;
+            /* Dark color for button text */
+            border: 2px solid #343a40;
+            /* Dark border for the button */
+            background-color: #fff;
+            /* White background for the button */
+        }
+
+        .btn-outline-dark:hover {
+            color: #fff;
+            /* White color for button text on hover */
+            background-color: #343a40;
+            /* Dark background on hover */
+        }
+    </style>
+    <script src="js/bundle.js"></script>
+
+
+    <!-- Custom CSS -->
+    <style>
+        .panel-heading {
+            margin-bottom: 20px;
+        }
+
+        .navbar {
+            margin-bottom: 70px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav
+        class="navbar navbar-expand-lg bg-body-tertiary custom-bg2 px-lg-3 py-lg -2 shadow-sm sticky-top role=navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar btn-outline-dark"></span>
+                    <span class="icon-bar btn-outline-dar"></span>
+                    <span class="icon-bar btn-outline-dar"></span>
+                </button>
+                <a class="navbar-brand webname" href="#">HealthBlock</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li class="active">
+                        <a id="loginbtn" href="./index.html">Login</a>
+                    </li>
+                    <li>
+                        <a id="loginbtn" href="./register.html">Register</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- <div><div id="includedContent"></div></div> -->
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <!-- Left Half (Login Modal) -->
+            <div class="col-lg-6  custom-bg3">
+                <div class="panel panel ">
+                    <div class="panel-heading">
+                        <h3 class="text-center fw-bold">Your Wellness Oasis Awaits!</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="alert alert-warning" style="display: none;">
+                            <strong>Warning!</strong> Unregistered user. Click <a href="./register.html">here</a> to
+                            register.
+                        </div>
+                        <div class="text-center">
+                            <button class="btn custom-bg" onclick="login()">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Half (Visible Background) -->
+            <div class="col-lg-6"
+                style="background-image: url('image/Pill_spinning.gif'); background-size: cover; background-repeat: no-repeat;">
+                <!-- <span class="second_part" style="display: block; position: relative;">
+                    <h3 class="fw-bold fs-4"
+                        style="color: #f5f8fa; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); animation: fadeIn 2s ease-in;">
+                        Empowering Health, Enriching Lives: Your Journey to Wellness Begins Here
+                    </h3>
+                </span> -->
+            </div>
+
+        </div>
+    </div>
+
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/web3.min.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        $(function () {
+            $("#includedContent").load("anim.html");
+        });
+
+        connect();
+        function login() {
+            $(".alert-warning").hide();
+
+            publicKey = web3.currentProvider.selectedAddress;
+            console.log(publicKey);
+            contractInstance.get_patient_list(function (error, result) {
+                if (!error) {
+                    var PatientList = result;
+                    for (var i = 0; i < PatientList.length; i++) {
+                        if (publicKey.toLowerCase() == PatientList[i]) {
+                            location.href = "./patient.html?key=" + publicKey;
+                        }
+                    }
+
+                } else {
+                    console.log(error);
+                    console.log("Invalid User!");
+                    $(".alert-warning").show();
+                }
+            });
+
+            contractInstance.get_doctor_list(function (error, result) {
+                if (!error) {
+                    var DoctorList = result;
+                    for (var i = 0; i < DoctorList.length; i++) {
+                        if (publicKey.toLowerCase() == DoctorList[i]) {
+                            location.href = "./doctor.html?key=" + publicKey;
+                        }
+                    }
+
+                } else {
+                    console.log(error);
+                    $(".alert-warning").show();
+                }
+            });
+
+            console.log("Invalid User!");
+            $(".alert-warning").show();
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>
