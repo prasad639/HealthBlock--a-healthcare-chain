@@ -1,3 +1,4 @@
+
 HealthBlock Website
 Project Overview
 HealthBlock is a blockchain-based website designed for securely storing and managing patient data. The project utilizes Ethereum blockchain for decentralized and secure data storage. Truffle and Ganache are used to set up a local blockchain environment for development, while IPFS (InterPlanetary File System) is employed to store data and create links for patient data files.
