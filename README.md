@@ -30,7 +30,7 @@ Other web technologies
 Getting Started
 Follow these steps to set up the HealthBlock project locally:
 
-Clone the repository: git clone https://github.com/yourusername/healthblock.git
+Clone the repository: git clone https://github.com/prasad639/healthblock.git
 
 Install dependencies:
 
