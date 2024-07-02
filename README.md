@@ -34,7 +34,7 @@ Clone the repository: git clone https://github.com/prasad639/healthblock.git
 
 Install dependencies:
 
-bash
+
 Copy code
 cd healthblock
 npm install
@@ -42,12 +42,10 @@ Set up the local blockchain environment using Truffle and Ganache.
 
 Deploy the smart contracts to the local blockchain:
 
-css
-Copy code
+
 truffle migrate --reset
 Start the React application:
 
-sql
-Copy code
+
 npm start
 Access the HealthBlock website at http://localhost:3000 in your web browser.
